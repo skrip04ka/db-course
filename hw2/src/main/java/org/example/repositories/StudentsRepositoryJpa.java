@@ -92,8 +92,9 @@ public class StudentsRepositoryJpa implements StudentsRepository {
     @Override
     @Transactional(readOnly = true)
     public Optional<Double> getAverageScoreByCourseNameAndGroupNumber(String courseName, String groupNumber) {
+        // cast() - неправильно анализируется ide, в @Query() анализируется правильно
         return Optional.ofNullable(em.createQuery(
-                        "select round(cast(sum(s.score) as double) / count(s.score), 2) from Score s " + // cast() - ложно положительная ошибка, в @Query() анализируется правильно
+                        "select round(cast(sum(s.score) as double) / count(s.score), 2) from Score s " +
                                 "join Course c on c = s.course " +
                                 "join Student st on st = s.student " +
                                 "join Group g on g = st.group " +
