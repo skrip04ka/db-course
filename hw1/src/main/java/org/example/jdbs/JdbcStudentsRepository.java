@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Repository
-public class JdbcStudentsRepository implements StudentsRepository{
+public class JdbcStudentsRepository implements StudentsRepository {
 
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
     private final KeyHolder holder = new GeneratedKeyHolder();
@@ -25,7 +25,7 @@ public class JdbcStudentsRepository implements StudentsRepository{
 
     @Override
     public void insertStudents(Student... students) {
-        for (Student student:students) {
+        for (Student student : students) {
             namedParameterJdbcOperations.update(
                     "insert into STUDENTS (NAME, GROUP_ID) values (:name, :groupId)",
                     new MapSqlParameterSource()
@@ -38,7 +38,7 @@ public class JdbcStudentsRepository implements StudentsRepository{
 
     @Override
     public void insertGroups(Group... groups) {
-        for (Group group:groups) {
+        for (Group group : groups) {
             namedParameterJdbcOperations.update(
                     "insert into GROUPS (NUMBER) values (:number)",
                     new MapSqlParameterSource()
@@ -50,7 +50,7 @@ public class JdbcStudentsRepository implements StudentsRepository{
 
     @Override
     public void insertScores(Score... scores) {
-        for (Score score:scores) {
+        for (Score score : scores) {
             namedParameterJdbcOperations.update(
                     "insert into SCORES (STUDENT_ID, COURSE_ID, SCORE) values (:student, :course, :score)",
                     new MapSqlParameterSource()
@@ -64,7 +64,7 @@ public class JdbcStudentsRepository implements StudentsRepository{
 
     @Override
     public void insertCourses(Course... courses) {
-        for (Course course:courses) {
+        for (Course course : courses) {
             namedParameterJdbcOperations.update(
                     "insert into COURSES (NAME) values (:name)",
                     new MapSqlParameterSource()
@@ -76,7 +76,7 @@ public class JdbcStudentsRepository implements StudentsRepository{
 
     @Override
     public void insertCoursesYears(CoursesYear... coursesYears) {
-        for (CoursesYear coursesYear:coursesYears) {
+        for (CoursesYear coursesYear : coursesYears) {
             namedParameterJdbcOperations.update(
                     "insert into COURSES_YEAR (GROUP_ID, COURSE_ID, YEAR_ADMISSION) values (:groupId, :coursesId, :year)",
                     new MapSqlParameterSource()
@@ -97,7 +97,7 @@ public class JdbcStudentsRepository implements StudentsRepository{
                         "   join COURSES on COURSES.ID = SCORES.COURSE_ID " +
                         "   join STUDENTS on STUDENTS.ID = SCORES.STUDENT_ID " +
                         "   join GROUPS on GROUPS.ID = STUDENTS.GROUP_ID " +
-                    "where GROUPS.NUMBER like :groupNumber and COURSES.NAME like :courseName",
+                        "where GROUPS.NUMBER like :groupNumber and COURSES.NAME like :courseName",
                 new MapSqlParameterSource()
                         .addValue("courseName", courseName)
                         .addValue("groupNumber", groupNumber),

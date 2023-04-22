@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.dto.*;
 import org.example.jdbs.JdbcStudentsRepository;
 import org.example.jdbs.StudentsRepository;
 import org.h2.tools.Console;

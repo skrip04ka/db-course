@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-public class StudentsRepositoryJpa implements StudentsRepository{
+public class StudentsRepositoryJpa implements StudentsRepository {
 
     @PersistenceContext
     private EntityManager em;
@@ -26,7 +26,7 @@ public class StudentsRepositoryJpa implements StudentsRepository{
     @Override
     @Transactional
     public void saveStudents(Student... students) {
-        for(Student student: students) {
+        for (Student student : students) {
             if (student.getId() <= 0) {
                 em.persist(student);
             } else {
@@ -40,7 +40,7 @@ public class StudentsRepositoryJpa implements StudentsRepository{
     @Override
     @Transactional
     public void saveGroups(Group... groups) {
-        for(Group group: groups) {
+        for (Group group : groups) {
             if (group.getId() <= 0) {
                 em.persist(group);
             } else {
@@ -53,7 +53,7 @@ public class StudentsRepositoryJpa implements StudentsRepository{
     @Override
     @Transactional
     public void saveScores(Score... scores) {
-        for(Score score: scores) {
+        for (Score score : scores) {
             if (score.getId() <= 0) {
                 em.persist(score);
             } else {
@@ -66,7 +66,7 @@ public class StudentsRepositoryJpa implements StudentsRepository{
     @Override
     @Transactional
     public void saveCourses(Course... courses) {
-        for(Course course: courses) {
+        for (Course course : courses) {
             if (course.getId() <= 0) {
                 em.persist(course);
             } else {
@@ -79,7 +79,7 @@ public class StudentsRepositoryJpa implements StudentsRepository{
     @Override
     @Transactional
     public void saveCoursesYears(CoursesYear... coursesYears) {
-        for(CoursesYear coursesYear: coursesYears) {
+        for (CoursesYear coursesYear : coursesYears) {
             if (coursesYear.getId() <= 0) {
                 em.persist(coursesYear);
             } else {
